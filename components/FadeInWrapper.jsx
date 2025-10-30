@@ -1,9 +1,14 @@
-// components/FadeInWrapper.jsx
-"use client";
+// components/FadeInWrapper.tsx
+'use client';
 
-import { useState, useEffect, createContext, useContext } from "react";
+import { useState, ReactNode, createContext, useContext } from 'react';
 
-const ImageOpacityContext = createContext({
+interface ImageOpacityContextType {
+  imageOpacities: Record<number, boolean>;
+  handleImageLoad: (index: number) => void;
+}
+
+const ImageOpacityContext = createContext<ImageOpacityContextType>({
   imageOpacities: {},
   handleImageLoad: () => {},
 });
@@ -12,15 +17,11 @@ export function useImageOpacity() {
   return useContext(ImageOpacityContext);
 }
 
-export default function FadeInWrapper({ children }) {
-  const [isVisible, setIsVisible] = useState(false);
-  const [imageOpacities, setImageOpacities] = useState({});
+export default function FadeInWrapper({ children }: { children: ReactNode }) {
+  const [isVisible, setIsVisible] = useState(true);
+  const [imageOpacities, setImageOpacities] = useState<Record<number, boolean>>({});
 
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
-  const handleImageLoad = (index) => {
+  const handleImageLoad = (index: number) => {
     setTimeout(() => {
       setImageOpacities((prev) => ({ ...prev, [index]: true }));
     }, index * 100);
@@ -28,11 +29,7 @@ export default function FadeInWrapper({ children }) {
 
   return (
     <ImageOpacityContext.Provider value={{ imageOpacities, handleImageLoad }}>
-      <div
-        className={`transition duration-500 ${
-          isVisible ? "opacity-100" : "opacity-0"
-        }`}
-      >
+      <div className={`transition duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
         {children}
       </div>
     </ImageOpacityContext.Provider>

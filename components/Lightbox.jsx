@@ -1,7 +1,18 @@
-// components/Lightbox.jsx
+// components/Lightbox.tsx
 "use client";
 
 import { useEffect } from "react";
+import Image from "next/image";
+import { PortfolioImage } from "@/data/portfolio";
+
+interface LightboxProps {
+  images: PortfolioImage[];
+  isOpen: boolean;
+  currentIndex: number;
+  onClose: () => void;
+  onNext: () => void;
+  onPrev: () => void;
+}
 
 export default function Lightbox({
   images,
@@ -10,9 +21,9 @@ export default function Lightbox({
   onClose,
   onNext,
   onPrev,
-}) {
+}: LightboxProps) {
   useEffect(() => {
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (!isOpen) return;
       if (e.key === "Escape") onClose();
       if (e.key === "ArrowRight") onNext();
@@ -41,9 +52,11 @@ export default function Lightbox({
           ✕
         </button>
 
-        <img
+        <Image
           src={images[currentIndex].full}
           alt={images[currentIndex].alt}
+          width={1000}
+          height={800}
           className="max-w-4xl max-h-screen object-contain"
         />
 

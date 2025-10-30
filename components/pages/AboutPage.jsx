@@ -1,73 +1,148 @@
-// components/pages/AboutPage.jsx
+// components/PortfolioGrid.tsx
 "use client";
 
-import Navigation from "../Navigation";
-import Footer from "../Footer";
-import FadeInWrapper from "../FadeInWrapper";
-import AnimatedImage from "../AnimatedImage";
+import ImageTile from "./ImageTile";
+import { portfolioImages } from "@/data/portfolio";
 
-export default function AboutPage() {
+interface PortfolioGridProps {
+  onImageClick: (index: number) => void;
+}
+
+export default function PortfolioGrid({ onImageClick }: PortfolioGridProps) {
+  const leftColumn = portfolioImages.filter((_, i) => i < 3);
+  const rightColumn = portfolioImages.filter((_, i) => i >= 3 && i < 8);
+  const leftColumn2 = portfolioImages.filter((_, i) => i >= 8 && i < 13);
+  const rightColumn2 = portfolioImages.filter((_, i) => i >= 13);
+
   return (
-    <FadeInWrapper>
-      <div className="dark:bg-black bg-white text-black dark:text-white px-5 md:px-20 min-h-screen">
-        <Navigation />
-        <div className="container mx-auto">
-          <h1 className="text-4xl pt-10 pb-8">
-            <b>ABOUT ME</b>
-          </h1>
-          <div className="grid grid-cols-2 gap-14 md:gap-20 pb-20">
-            <div className="col-span-2 md:col-span-1">
-              <div className="bg-white dark:bg-neutral-900 p-5 pb-28 m-6 md:m-12 shadow-lg border border-gray-100 dark:border-neutral-800 hover:rotate-0 transition duration-500 -rotate-6 relative">
-                <AnimatedImage
-                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
-                  alt="Profile"
-                  index={0}
-                  className="flex flex-col w-full aspect-square object-cover h-auto smooth-edges"
-                />
-                <div className="absolute bottom-0 left-0 right-0 text-center">
-                  <p className="text-gray-800 dark:text-slate-200 pb-7 h-full text-6xl font-nothingyoucoulddo">
-                    me
-                  </p>
-                </div>
-              </div>
+    <section className="text-neutral-700">
+      <div className="container w-full">
+        <div className="flex flex-wrap w-full">
+          <div className="flex w-full md:w-1/2 flex-wrap">
+            <div className="w-full md:w-1/2">
+              <ImageTile
+                image={leftColumn[0]}
+                index={0}
+                onImageClick={onImageClick}
+              />
             </div>
-            <section className="font-normal text-center text-base md:text-start mx-3 col-span-2 md:col-span-1 my-auto">
-              <div className="block md:hidden">
-                <p className="text-3xl font-serif font-bold mb-1">
-                  Hello there,
-                </p>
-                <p className="text-3xl font-serif font-bold mb-6">
-                  I'm Ahnaf <span className="animate-wave">👋</span>
-                </p>
-              </div>
-              <p className="hidden md:block text-3xl font-serif font-bold mb-6">
-                Hello there, I'm Ahnaf <span className="animate-wave">👋</span>
-              </p>
-              <p className="mb-4">
-                I'm a San Francisco-based photographer with over 6 years of
-                experience in capturing unforgettable moments. I specialize in
-                creating images that are both visually striking and emotionally
-                impactful, and I have developed a signature style that blends
-                natural beauty with vibrant colors and bold compositions.
-              </p>
-              <p className="mb-4">
-                When I'm not behind the camera, you can find me exploring the
-                city's diverse neighborhoods, trying out new restaurants, or
-                spending time with my family and friends. I believe that every
-                moment is an opportunity to experience something new and to
-                create memories that will last a lifetime.
-              </p>
-              <p>
-                Thank you for taking the time to learn a little bit about me and
-                my work. If you're interested in collaborating or would like to
-                see more of my portfolio, please don't hesitate to get in touch.
-                Let's work together to bring your vision to life!
-              </p>
-            </section>
+            <div className="w-full md:w-1/2">
+              <ImageTile
+                image={leftColumn[1]}
+                index={1}
+                onImageClick={onImageClick}
+              />
+            </div>
+            <div className="w-full">
+              <ImageTile
+                image={leftColumn[2]}
+                index={2}
+                onImageClick={onImageClick}
+              />
+            </div>
+          </div>
+
+          <div className="flex w-full md:w-1/2 flex-wrap">
+            <div className="w-full">
+              <ImageTile
+                image={rightColumn[0]}
+                index={3}
+                onImageClick={onImageClick}
+              />
+            </div>
+            <div className="w-full md:w-1/2">
+              <ImageTile
+                image={rightColumn[1]}
+                index={4}
+                onImageClick={onImageClick}
+              />
+            </div>
+            <div className="w-full md:w-1/2">
+              <ImageTile
+                image={rightColumn[2]}
+                index={5}
+                onImageClick={onImageClick}
+              />
+            </div>
+            <div className="w-full md:w-1/2">
+              <ImageTile
+                image={rightColumn[3]}
+                index={6}
+                onImageClick={onImageClick}
+              />
+            </div>
+            <div className="w-full md:w-1/2">
+              <ImageTile
+                image={rightColumn[4]}
+                index={7}
+                onImageClick={onImageClick}
+              />
+            </div>
+          </div>
+
+          <div className="flex w-full md:w-1/2 flex-wrap">
+            <div className="w-full">
+              <ImageTile
+                image={leftColumn2[0]}
+                index={8}
+                onImageClick={onImageClick}
+              />
+            </div>
+            <div className="w-full md:w-1/2">
+              <ImageTile
+                image={leftColumn2[1]}
+                index={9}
+                onImageClick={onImageClick}
+              />
+            </div>
+            <div className="w-full md:w-1/2">
+              <ImageTile
+                image={leftColumn2[2]}
+                index={10}
+                onImageClick={onImageClick}
+              />
+            </div>
+            <div className="w-full md:w-1/2">
+              <ImageTile
+                image={leftColumn2[3]}
+                index={11}
+                onImageClick={onImageClick}
+              />
+            </div>
+            <div className="w-full md:w-1/2">
+              <ImageTile
+                image={leftColumn2[4]}
+                index={12}
+                onImageClick={onImageClick}
+              />
+            </div>
+          </div>
+
+          <div className="flex w-full md:w-1/2 flex-wrap">
+            <div className="w-full md:w-1/2">
+              <ImageTile
+                image={rightColumn2[0]}
+                index={13}
+                onImageClick={onImageClick}
+              />
+            </div>
+            <div className="w-full md:w-1/2">
+              <ImageTile
+                image={rightColumn2[1]}
+                index={14}
+                onImageClick={onImageClick}
+              />
+            </div>
+            <div className="w-full">
+              <ImageTile
+                image={rightColumn2[2]}
+                index={15}
+                onImageClick={onImageClick}
+              />
+            </div>
           </div>
         </div>
-        <Footer />
       </div>
-    </FadeInWrapper>
+    </section>
   );
 }
