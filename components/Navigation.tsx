@@ -1,11 +1,12 @@
-// components/Navigation.jsx
 "use client";
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleResize = () => {
@@ -17,6 +18,19 @@ export default function Navigation() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const isActive = (href: string) => {
+    if (href === "/" && pathname === "/") return true;
+    if (href !== "/" && pathname.startsWith(href)) return true;
+    return false;
+  };
+
+  const navItems = [
+    { href: "/", label: "HOME" },
+    { href: "/portfolio", label: "PORTFOLIO" },
+    { href: "/about", label: "ABOUT ME" },
+    { href: "/contact", label: "CONTACT" },
+  ];
 
   return (
     <header className="flex w-full overflow-hidden pt-10 pb-1">
@@ -56,40 +70,28 @@ export default function Navigation() {
 
           <div
             className={`w-full md:w-auto md:flex-grow md:flex md:items-center overflow-hidden transition-all ease-out duration-500 ${
-              isOpen ? "h-32" : "h-0"
+              isOpen ? "h-40" : "h-0"
             } md:h-auto`}
           >
             <ul className="flex flex-col duration-300 ease-out md:space-x-5 sm:transition-none mt-5 md:flex-row md:items-center md:ml-auto md:mt-0 md:pt-0 md:border-0">
-              <li className="group transition duration-300">
-                <Link
-                  href="/"
-                  className="font-signika text-2xl tap-highlight-transparent"
-                  onClick={() => setIsOpen(false)}
-                >
-                  PORTFOLIO
-                  <span className="hidden md:block h-0.5 bg-black dark:bg-white" />
-                </Link>
-              </li>
-              <li className="group transition duration-300">
-                <Link
-                  href="/about"
-                  className="font-signika text-2xl tap-highlight-transparent"
-                  onClick={() => setIsOpen(false)}
-                >
-                  ABOUT ME
-                  <span className="hidden md:block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-black dark:bg-white" />
-                </Link>
-              </li>
-              <li className="group transition duration-300">
-                <Link
-                  href="/contact"
-                  className="font-signika text-2xl tap-highlight-transparent"
-                  onClick={() => setIsOpen(false)}
-                >
-                  CONTACT
-                  <span className="hidden md:block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-black dark:bg-white" />
-                </Link>
-              </li>
+              {navItems.map((item) => (
+                <li key={item.href} className="group transition duration-300">
+                  <Link
+                    href={item.href}
+                    className="font-signika text-2xl tap-highlight-transparent block"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.label}
+                    <span
+                      className={`hidden md:block h-0.5 bg-black dark:bg-white transition-all duration-500 ${
+                        isActive(item.href)
+                          ? "max-w-full"
+                          : "max-w-0 group-hover:max-w-full"
+                      }`}
+                    />
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

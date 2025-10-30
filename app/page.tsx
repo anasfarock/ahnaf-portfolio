@@ -1,6 +1,6 @@
 // app/page.jsx
-import PortfolioPage from '@/components/pages/PortfolioPage';
+import HomePage from '@/components/pages/HomePage';
 
 export default function Home() {
-  return <PortfolioPage />;
+  return <HomePage />;
 }
