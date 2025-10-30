@@ -1,4 +1,3 @@
-// components/pages/PortfolioPage.jsx
 "use client";
 
 import { useState } from "react";
@@ -9,10 +8,15 @@ import PortfolioGrid from "../PortfolioGrid";
 import Lightbox from "../Lightbox";
 import { portfolioImages } from "@/data/portfolio";
 
-export default function PortfolioPage() {
-  const [lightbox, setLightbox] = useState({ isOpen: false, currentIndex: 0 });
+interface LightboxState {
+  isOpen: boolean;
+  currentIndex: number;
+}
 
-  const openLightbox = (index) => {
+export default function PortfolioPage() {
+  const [lightbox, setLightbox] = useState<LightboxState>({ isOpen: false, currentIndex: 0 });
+
+  const openLightbox = (index: number) => {
     setLightbox({ isOpen: true, currentIndex: index });
   };
 

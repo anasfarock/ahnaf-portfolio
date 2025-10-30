@@ -1,7 +1,6 @@
-// components/pages/ContactPage.jsx
 "use client";
 
-import { useState } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 import Navigation from "../Navigation";
 import Footer from "../Footer";
 import FadeInWrapper from "../FadeInWrapper";
@@ -14,12 +13,12 @@ export default function ContactPage() {
     message: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     window.location.href = `mailto:info@example.com?subject=${encodeURIComponent(
       formData.subject
@@ -38,7 +37,7 @@ export default function ContactPage() {
                   <b>CONTACT</b>
                 </h1>
 
-                <div className="space-y-8">
+                <form onSubmit={handleSubmit} className="space-y-8">
                   <div>
                     <label
                       htmlFor="email"
@@ -94,12 +93,12 @@ export default function ContactPage() {
                     />
                   </div>
                   <button
-                    onClick={handleSubmit}
+                    type="submit"
                     className="py-3 px-5 text-sm font-medium text-center bg-black dark:bg-white text-white dark:text-black rounded-lg sm:w-fit hover:opacity-90 focus:ring-4 focus:outline-none focus:ring-blue-300 transition duration-300"
                   >
                     Send message
                   </button>
-                </div>
+                </form>
               </div>
             </section>
             <div className="col-span-2 md:col-span-1 flex relative">
