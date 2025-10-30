@@ -59,12 +59,9 @@ export default function Footer() {
           </div>
         </div>
         <p className="mt-8 text-xs text-gray-600 dark:text-gray-300 text-center">
-          © 2023 Developed and Designed by
-          <a
-            href="https://www.linkedin.com/in/joão-franco-452161195/"
-            className="underline ml-1"
-          >
-            João Franco
+          © 2025 Developed by
+          <a href="https://www.anasfarooq.com" className="underline ml-1">
+            Anas Farooq
           </a>
         </p>
       </div>
