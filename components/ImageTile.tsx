@@ -1,8 +1,15 @@
 'use client';
 
 import AnimatedImage from './AnimatedImage';
+import { PortfolioImage } from '@/data/portfolio';
 
-export default function ImageTile({ image, index, onImageClick }) {
+interface ImageTileProps {
+  image: PortfolioImage;
+  index: number;
+  onImageClick: (index: number) => void;
+}
+
+export default function ImageTile({ image, index, onImageClick }: ImageTileProps) {
   return (
     <div className="p-1 overflow-hidden h-full w-full">
       <button
