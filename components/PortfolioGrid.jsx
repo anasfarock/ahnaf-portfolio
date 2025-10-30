@@ -1,14 +1,9 @@
-// components/PortfolioGrid.tsx
 "use client";
 
 import ImageTile from "./ImageTile";
 import { portfolioImages } from "@/data/portfolio";
 
-interface PortfolioGridProps {
-  onImageClick: (index: number) => void;
-}
-
-export default function PortfolioGrid({ onImageClick }: PortfolioGridProps) {
+export default function PortfolioGrid({ onImageClick }) {
   const leftColumn = portfolioImages.filter((_, i) => i < 3);
   const rightColumn = portfolioImages.filter((_, i) => i >= 3 && i < 8);
   const leftColumn2 = portfolioImages.filter((_, i) => i >= 8 && i < 13);
