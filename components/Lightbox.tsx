@@ -1,4 +1,3 @@
-// components/Lightbox.tsx
 "use client";
 
 import { useEffect } from "react";
@@ -33,11 +32,11 @@ export default function Lightbox({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, onClose, onNext, onPrev]);
 
-  if (!isOpen) return null;
-
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90"
+      className={`fixed inset-0 z-50 flex items-center justify-center transition-all duration-300 ${
+        isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+      } bg-black bg-opacity-90`}
       onClick={onClose}
     >
       <div
@@ -52,13 +51,15 @@ export default function Lightbox({
           ✕
         </button>
 
-        <Image
-          src={images[currentIndex].full}
-          alt={images[currentIndex].alt}
-          width={1000}
-          height={800}
-          className="max-w-4xl max-h-screen object-contain"
-        />
+        {isOpen && (
+          <Image
+            src={images[currentIndex].full}
+            alt={images[currentIndex].alt}
+            width={1000}
+            height={800}
+            className="max-w-4xl max-h-screen object-contain"
+          />
+        )}
 
         <button
           onClick={(e) => {
