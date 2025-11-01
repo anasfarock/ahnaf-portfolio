@@ -16,20 +16,20 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-14 md:gap-20 pb-20">
             {/* Left Column - Image */}
             <div className="flex justify-center items-start">
-              <div className="bg-white dark:bg-neutral-900 p-5 pb-28 shadow-lg border border-gray-100 dark:border-neutral-800 hover:rotate-0 transition duration-500 -rotate-6 relative w-full max-w-sm">
+              <div className="bg-white dark:bg-neutral-900 p-5 pb-20 m-6 md:m-12 shadow-lg border border-gray-100 dark:border-neutral-800 hover:rotate-0 transition duration-500 rotate-6 relative">
                 <div className="relative w-full aspect-square">
                   <AnimatedImage
-                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+                    src="/images/about-me.jpg"
                     alt="Profile"
                     index={0}
                     width={400}
                     height={400}
-                    className="w-full h-full object-cover smooth-edges"
+                    className="flex flex-col aspect-square w-full object-cover h-auto max-h-full smooth-edges"
                   />
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 text-center">
-                  <p className="text-gray-800 dark:text-slate-200 pb-7 text-6xl font-nothingyoucoulddo">
-                    me
+                  <p className="text-gray-800 opacity-80 dark:text-slate-200 pb-5 text-4xl font-nothingyoucoulddo">
+                    hello there?
                   </p>
                 </div>
               </div>
