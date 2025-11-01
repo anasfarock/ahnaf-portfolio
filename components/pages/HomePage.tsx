@@ -32,7 +32,7 @@ export default function HomePage() {
             <div className="absolute inset-0 bg-black/40 dark:bg-black/50"></div>
 
             {/* Hero Content */}
-            <div className="relative z-10 px-5 md:px-20 py-20 w-full">
+            <div className="relative z-10 px-5 md:px-20 py-50 w-full sm:py-20 lg:py-55 md:py-35">
               <div className="container mx-auto">
                 <div className="flex flex-col justify-center max-w-2xl">
                   <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight text-white">
