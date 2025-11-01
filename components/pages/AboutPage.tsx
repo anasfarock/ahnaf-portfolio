@@ -40,12 +40,12 @@ export default function AboutPage() {
               <div className="block md:hidden mb-6">
                 <p className="text-3xl font-serif font-bold mb-1">Hello there,</p>
                 <p className="text-3xl font-serif font-bold mb-6">
-                  I&apos;m Sophia <span className="animate-wave">👋</span>
+                  I&apos;m Ahnaf <span className="animate-wave">👋</span>
                 </p>
               </div>
 
               <p className="hidden md:block text-3xl font-serif font-bold mb-6">
-                Hello there, I&apos;m Sophia <span className="animate-wave">👋</span>
+                Hello there, I&apos;m Ahnaf Farooq<span className="animate-wave"></span>
               </p>
 
               <p className="mb-4 leading-relaxed">
