@@ -1,9 +1,8 @@
 // components/AnimatedImage.tsx
 "use client";
 
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import { useImageOpacity } from "./FadeInWrapper";
 
 interface AnimatedImageProps {
   src: string;
@@ -24,16 +23,19 @@ export default function AnimatedImage({
   width = 500,
   height = 500,
 }: AnimatedImageProps) {
-  const { imageOpacities, handleImageLoad } = useImageOpacity();
-  const isVisible = imageOpacities[index] || false;
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    handleImageLoad(index);
-  }, [index, handleImageLoad]);
+    const timeout = setTimeout(() => {
+      setIsVisible(true);
+    }, index * 100);
+
+    return () => clearTimeout(timeout);
+  }, [index]);
 
   return (
     <div
-      className={`transition duration-500 ${
+      className={`transition-opacity duration-500 ease-in-out ${
         isVisible ? "opacity-100" : "opacity-0"
       }`}
     >
@@ -44,6 +46,7 @@ export default function AnimatedImage({
           fill
           className={className}
           sizes="(max-width: 768px) 100vw, 50vw"
+          priority={index < 4} // Prioritize loading for first few images
         />
       ) : (
         <Image
@@ -52,6 +55,7 @@ export default function AnimatedImage({
           width={width}
           height={height}
           className={className}
+          priority={index < 4} // Prioritize loading for first few images
         />
       )}
     </div>
