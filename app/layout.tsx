@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 import './globals.css';
 
 export const metadata = {
-  title: 'Sophia Williams - Photography Portfolio',
+  title: 'Ahnaf Farooq',
   description: 'Professional photography portfolio',
 };
 
