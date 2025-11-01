@@ -18,7 +18,6 @@ export function useImageOpacity() {
 }
 
 export default function FadeInWrapper({ children }: { children: ReactNode }) {
-  const [isVisible, setIsVisible] = useState(true);
   const [imageOpacities, setImageOpacities] = useState<Record<number, boolean>>({});
 
   const handleImageLoad = (index: number) => {
@@ -29,7 +28,7 @@ export default function FadeInWrapper({ children }: { children: ReactNode }) {
 
   return (
     <ImageOpacityContext.Provider value={{ imageOpacities, handleImageLoad }}>
-      <div className={`transition duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+      <div className="transition-opacity duration-500 opacity-100">
         {children}
       </div>
     </ImageOpacityContext.Provider>
