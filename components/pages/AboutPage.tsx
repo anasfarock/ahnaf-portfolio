@@ -49,7 +49,7 @@ export default function AboutPage() {
               </p>
 
               <p className="mb-4 leading-relaxed">
-                I&apos;m a San Francisco-based photographer with over 6 years of experience in capturing
+                I&apos;m a Islamabad-based photographer with over 6 years of experience in capturing
                 unforgettable moments. I specialize in creating images that are both visually striking and
                 emotionally impactful, and I have developed a signature style that blends natural beauty with
                 vibrant colors and bold compositions.

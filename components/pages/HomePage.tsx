@@ -9,7 +9,7 @@ export default function HomePage() {
   return (
     <FadeInWrapper>
       <div className="dark:bg-black bg-white text-black dark:text-white min-h-screen flex flex-col">
-        <Navigation />
+        <Navigation transparent />
         <div className="flex-1 flex flex-col">
           {/* Hero Section with Full-Screen Video Background */}
           <div className="relative w-screen left-1/2 right-1/2 -mx-[50vw] flex items-center justify-center overflow-hidden">
@@ -32,7 +32,7 @@ export default function HomePage() {
             <div className="absolute inset-0 bg-black/40 dark:bg-black/50"></div>
 
             {/* Hero Content */}
-            <div className="relative z-10 px-5 md:px-20 py-50 w-full sm:py-20 lg:py-55 md:py-35">
+            <div className="relative z-10 px-5 md:px-20 py-50 w-full sm:py-20 lg:py-55 md:py-40">
               <div className="container mx-auto">
                 <div className="flex flex-col justify-center max-w-2xl">
                   <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight text-white">

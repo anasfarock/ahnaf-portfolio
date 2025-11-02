@@ -4,7 +4,11 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function Navigation() {
+interface NavigationProps {
+  transparent?: boolean;
+}
+
+export default function Navigation({ transparent = false }: NavigationProps) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
@@ -33,11 +37,22 @@ export default function Navigation() {
   ];
 
   return (
-    <header className="flex w-full overflow-hidden pt-10 pb-1">
-      <nav className="w-full">
-        <div className="container mx-auto flex flex-wrap items-center md:flex-nowrap">
+    <header
+      className={`fixed top-0 left-0 w-full z-50 pt-3 md:px-10 transition-colors duration-500 ${
+        transparent
+          ? "bg-transparent text-white"
+          : "bg-white dark:bg-black text-black dark:text-white shadow-md"
+      }`}
+    >
+      <nav className="w-full px-5 md:px-10">
+        <div className="container mx-auto flex flex-wrap items-center md:flex-nowrap py-4">
           <div className="mr-4 md:mr-8">
-            <Link href="/" className="text-2xl font-signika font-bold">
+            <Link
+              href="/"
+              className={`text-2xl font-signika font-bold ${
+                transparent ? "text-white" : ""
+              }`}
+            >
               Ahnaf Farooq
             </Link>
           </div>
@@ -45,7 +60,7 @@ export default function Navigation() {
           <div className="ml-auto md:hidden flex items-center justify-start">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="tap-highlight-transparent text-black dark:text-white w-5 h-5 relative focus:outline-none"
+              className="tap-highlight-transparent w-6 h-6 relative focus:outline-none"
               aria-label="Toggle menu"
             >
               <div className="block w-5 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -73,17 +88,21 @@ export default function Navigation() {
               isOpen ? "h-40" : "h-0"
             } md:h-auto`}
           >
-            <ul className="flex flex-col duration-300 ease-out md:space-x-5 sm:transition-none mt-5 md:flex-row md:items-center md:ml-auto md:mt-0 md:pt-0 md:border-0">
+            <ul className="flex flex-col md:flex-row md:space-x-6 mt-5 md:mt-0">
               {navItems.map((item) => (
                 <li key={item.href} className="group transition duration-300">
                   <Link
                     href={item.href}
-                    className="font-signika text-2xl tap-highlight-transparent block"
+                    className={`font-signika text-2xl block ${
+                      transparent ? "text-white" : ""
+                    }`}
                     onClick={() => setIsOpen(false)}
                   >
                     {item.label}
                     <span
-                      className={`hidden md:block h-0.5 bg-black dark:bg-white transition-all duration-500 ${
+                      className={`hidden md:block h-0.5 transition-all duration-500 ${
+                        transparent ? "bg-white" : "bg-black dark:bg-white"
+                      } ${
                         isActive(item.href)
                           ? "max-w-full"
                           : "max-w-0 group-hover:max-w-full"
